@@ -40,13 +40,15 @@ function App() {
   const atualizar = () => {
     if (!nome || !email) {
       alert('Digite o nome e email');
-      return;
-    }
-
-    setClient(client.map((cl) => (cl.id === editId ? { ...cl, nome, email } : cl)));
-    setNome('');
-    setEmail('');
-    setEditId(null);
+      
+    }else if(!email.includes('@')){
+      alert('Digite um e-mail válido')
+    }else{
+      setClient(client.map((cl) => (cl.id === editId ? { ...cl, nome, email } : cl)));
+      setNome('');
+      setEmail('');
+      setEditId(null);
+    }  
   };
 
   return (
