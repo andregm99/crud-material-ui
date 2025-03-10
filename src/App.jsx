@@ -3,6 +3,8 @@ import { Button, Container, TextField, Typography, Table, TableBody, TableCell, 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
+
+
 function App() {
   const [client, setClient] = useState([]);
   const [nome, setNome] = useState('');
@@ -10,15 +12,26 @@ function App() {
   const [id, setId] = useState(0);
   const [editId, setEditId] = useState(null);
 
+  const validarEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email); // Retorna verdadeiro se o e-mail for válido, falso caso contrário
+  };
   // Adicionar cliente
   const Adicionar = () => {
+ 
     if (!nome || !email) {
       alert('Digite o seu nome e email');
-    } else if (!email.includes('@')) {
-      alert('Digite um email válido');
-    } else {
+      return;
+    } 
+
+    if (!validarEmail(email)) {
+      alert('Digite um e-mail válido com domínio');
+      return;
+    }
+
+    else {
       setId(id + 1);
-      setClient([...client, { id, nome, email }]);
+      setClient(client.concat({nome,email,id}));
       setNome('');
       setEmail('');
     }
@@ -41,9 +54,12 @@ function App() {
     if (!nome || !email) {
       alert('Digite o nome e email');
       
-    }else if(!email.includes('@')){
-      alert('Digite um e-mail válido')
-    }else{
+    }
+    else if (!validarEmail(email)) {
+      alert('Digite um e-mail válido com domínio');
+      return;
+    }
+    else{
       setClient(client.map((cl) => (cl.id === editId ? { ...cl, nome, email } : cl)));
       setNome('');
       setEmail('');
