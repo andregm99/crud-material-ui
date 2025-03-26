@@ -1,8 +1,12 @@
-# React + Vite
+![Captura de tela 2025-03-26 185040](https://github.com/user-attachments/assets/69dd7521-acf3-4733-a575-ca7e3ded4565)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+crud for user registration, the following technologies were used in this project:
 
-Currently, two official plugins are available:
+reactjs
+html
+css
+material UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+https://cadastrousuarioagm.netlify.app/
