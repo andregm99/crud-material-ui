@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Container, TextField, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useEffect } from 'react';
 
 
 
@@ -11,6 +12,11 @@ function App() {
   const [email, setEmail] = useState('');
   const [id, setId] = useState(0);
   const [editId, setEditId] = useState(null);
+  const [darkMode, setDarkmode] = useState(false)
+  useEffect(() => {
+    document.body.style.backgroundColor= darkMode? '#333':'#fff'
+    document.body.style.color = darkMode? '#fff': '#333'
+  },[darkMode])
 
   const validarEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -69,12 +75,20 @@ function App() {
 
   return (
     <Container maxWidth="md" sx={{ marginTop: '50px' }}>
+      <Button variant='contained' color='primary' sx={{marginBottom:'10px'}}
+      onClick={()=>setDarkmode(!darkMode)}
+      >
+        {darkMode?'Clear mode' : 'Dark mode'}
+      </Button>
       <Typography variant="h4" gutterBottom>
         Cadastro de Usuário
       </Typography>
       <form>
-        <TextField label="Nome" variant="outlined" fullWidth margin="normal" value={nome} onChange={(e) => setNome(e.target.value)} />
-        <TextField label="E-mail" variant="outlined" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
+        <TextField label="Nome" variant="outlined" fullWidth margin="normal" value={nome} onChange={(e) => setNome(e.target.value)} 
+          sx={{input:{color: darkMode?'#fff':'#333'}}}/>
+        <TextField label="E-mail" variant="outlined" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} type="email" 
+          sx={{input:{color: darkMode?'#fff':'#333'}}}
+          />
         <Button
           variant="contained"
           color="primary"
